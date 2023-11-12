@@ -1,10 +1,11 @@
 @extends('layouts.master')
 
-@section('title','Login Page')
+@section('title', 'Login Page')
 
 @section('content')
     <div class="login_form">
-        <form>
+        <form action="{{ route('login') }}" method="post">
+            @csrf
             <fieldset>
                 <div class="field">
                     <label class="label_field">Email Address</label>
@@ -18,11 +19,14 @@
                     <label class="label_field hidden">hidden label</label>
                     <label class="form-check-label"><input type="checkbox" class="form-check-input">
                         Remember Me</label>
-                    <a class="forgot" href="">Forgotten Password?</a>
+                    <a class="forgot" href="{{ route('auth#registerPage') }}">Forgotten Password?</a>
                 </div>
                 <div class="field margin_0">
                     <label class="label_field hidden">hidden label</label>
-                    <button class="main_bt">Sing In</button>
+                    <button type="submit" class="main_bt">Sing In</button>
+                </div>
+                <div class="field">
+                    <a class="forgot" href="{{ route('auth#registerPage') }}">Sign Up</a>
                 </div>
             </fieldset>
         </form>
