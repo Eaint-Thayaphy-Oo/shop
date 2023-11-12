@@ -10,6 +10,6 @@ class UserController extends Controller
     //direct user home page
     public function home()
     {
-        return view('user.home');
+        return view('user.main.home');
     }
 }
