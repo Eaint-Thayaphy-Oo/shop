@@ -27,4 +27,16 @@ class AuthController extends Controller
         }
         return redirect()->route('user#home');
     }
+
+    //direct dashboardOne
+    public function dashboardOne()
+    {
+        return view('admin.dashboard.dashboardOne');
+    }
+
+    //direct dashboardTwo
+    public function dashboardTwo()
+    {
+        return view('admin.dashboard.dashboardTwo');
+    }
 }

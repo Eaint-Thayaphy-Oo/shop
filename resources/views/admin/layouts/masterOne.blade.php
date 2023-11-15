@@ -22,7 +22,7 @@
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ asset('admin/css/responsive.css') }}" />
     <!-- color css -->
-    <link rel="stylesheet" href="{{ asset('admin/css/colors.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/css/color_2.css') }}" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-select.css') }}" />
     <!-- scrollbar css -->
@@ -35,7 +35,7 @@
       <![endif]-->
 </head>
 
-<body class="dashboard dashboard_1">
+<body class="dashboard dashboard_2">
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
@@ -64,15 +64,13 @@
                     <ul class="list-unstyled components">
                         <li class="active">
                             <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-                                    class="fa fa-dashboard yellow_color"></i>
-                                <span>Dashboard</span></a>
+                                    class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
                             <ul class="collapse list-unstyled" id="dashboard">
                                 <li>
                                     <a href="{{ route('dashboardOne') }}">> <span>Default Dashboard</span></a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('dashboardTwo') }}">> <span>Dashboard style
-                                            2</span></a>
+                                    <a href="{{ route('dashboardTwo') }}">> <span>Dashboard style 2</span></a>
                                 </li>
                             </ul>
                             <a href="{{ route('category#list') }}"><i class="fa fa-list yellow_color"></i>
@@ -91,8 +89,8 @@
                             <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
                                     class="fa fa-bars"></i></button>
                             <div class="logo_section">
-                                <a href="index.html"><img class="img-responsive"
-                                        src="{{ asset('admin/images/logo/logo.png') }}" alt="#" /></a>
+                                <a href="{{ asset('admin/index.html') }}"><img class="img-responsive"
+                                        src="{{ asset('admin/images/logo/logo_black.png') }}" alt="#" /></a>
                             </div>
                             <div class="right_topbar">
                                 <div class="icon_info">
@@ -126,7 +124,6 @@
                 </div>
                 <!-- end topbar -->
 
-
                 @yield('content')
 
             </div>
@@ -154,7 +151,7 @@
     </script>
     <!-- custom js -->
     <script src="{{ asset('admin/js/custom.js') }}"></script>
-    <script src="{{ asset('admin/js/chart_custom_style1.js') }}"></script>
+    <script src="{{ asset('admin/js/chart_custom_style2.js') }}"></script>
 </body>
 
 </html>
