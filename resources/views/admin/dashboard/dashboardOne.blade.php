@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
 
+@section('title','Dashboard One')
+
 @section('content')
     <!-- dashboard inner -->
     <div class="midde_cont">
