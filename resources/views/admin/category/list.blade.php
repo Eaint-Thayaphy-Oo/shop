@@ -27,9 +27,9 @@
                         <div class="col-4 offset-8">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="fa fa-check"></i>{{ session('deleteSuccess') }}
-                                <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                {{-- <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     @endif
