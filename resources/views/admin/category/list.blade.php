@@ -34,6 +34,17 @@
                         </div>
                     @endif
 
+                    @if (session('updateSuccess'))
+                        <div class="col-4 offset-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fa fa-check"></i>{{ session('updateSuccess') }}
+                                {{-- <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> --}}
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="row">
                         <div class="col-3">
                             <h4 class="text-secondary">Search Key : <span class="text-danger">{{ request('key') }}</span>
@@ -91,7 +102,8 @@
                                                     <td>
                                                         <div class="table-data-feature">
                                                             <a href=""><i class="fa fa-eye" title="View"></i></a>
-                                                            <a href=""><i class="fa fa-edit" title="Edit"></i></a>
+                                                            <a href="{{ route('category#edit', $c->id) }}"><i
+                                                                    class="fa fa-edit" title="Edit"></i></a>
                                                             <a href="{{ route('category#delete', $c->id) }}"><i
                                                                     class="fa fa-trash" title="Delete"></i></a>
                                                             <a href=""><i class="fa fa-folder"
