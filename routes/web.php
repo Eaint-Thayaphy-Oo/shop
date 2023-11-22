@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\user\UserController;
 |
 */
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
+Route::middleware(['auth'])->group(function () {
     //dashboard
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('dashboardOne', [AuthController::class, 'dashboardOne'])->name('dashboardOne');
@@ -32,6 +33,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('category#edit');
         Route::post('update', [CategoryController::class, 'update'])->name('category#update');
     });
+
+    //admin account
+    Route::get('password/changePage', [AdminController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
+    Route::post('change/password', [AdminController::class, 'changePassword'])->name('admin#changePassword');
 
     //user
     //home

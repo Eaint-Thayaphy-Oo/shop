@@ -16,9 +16,9 @@
                         <div class="col-4 offset-8">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="fa fa-check"></i>{{ session('createSuccess') }}
-                                <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                {{-- <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     @endif
@@ -53,7 +53,7 @@
                             <h4 class="text-secondary"><i class="fa fa-database"></i> - {{ $categories->total() }}</h4>
                             </h4>
                         </div>
-                        <div class="col-3 offset-9">
+                        <div class="col-3 offset-6">
                             <form action="{{ route('category#list') }}" method="get">
                                 @csrf
                                 <div class="d-flex my-3">
@@ -65,23 +65,34 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="full graph_head">
+                            <div class="button_block">
+                                <a href="{{ route('category#createPage') }}">
+                                    <button type="button" class="btn cur-p btn-success"><i class="fa fa-plus"></i>Add
+                                        Category</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {{-- <div class="row">
+                <div class="full graph_head">
+                    <div class="button_block">
+                        <a href="{{ route('category#createPage') }}">
+                            <button type="button" class="btn cur-p btn-success"><i class="fa fa-plus"></i>Add
+                                Category</button>
+                        </a>
+                    </div>
+                </div>
+            </div> --}}
             <!-- row -->
             <div class="row">
                 <!-- table section -->
                 @if (count($categories) != 0)
                     <div class="col-md-12">
                         <div class="white_shd full margin_bottom_30">
-                            <div class="full graph_head">
-                                <div class="button_block">
-                                    <a href="{{ route('category#createPage') }}">
-                                        <button type="button" class="btn cur-p btn-success"><i class="fa fa-plus"></i>Add
-                                            Category</button>
-                                    </a>
-                                </div>
-                            </div>
                             <div class="table_section padding_infor_info">
                                 <div class="table-responsive-sm">
                                     <table class="table table-hover text-center">
