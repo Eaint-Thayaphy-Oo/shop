@@ -41,6 +41,9 @@ Route::middleware(['auth'])->group(function () {
     //account
     Route::get('details', [AdminController::class, 'details'])->name('admin#details');
 
+    //profile
+    Route::get('edit', [AdminController::class, 'edit'])->name('admin#edit');
+
     //user
     //home
     Route::group(['prefix' => 'user', 'middleware' => 'user_auth'], function () {

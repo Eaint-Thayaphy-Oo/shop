@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Change Password Page')
+@section('title', 'Account Info')
 
 @section('content')
     <!-- dashboard inner -->
@@ -9,7 +9,7 @@
             <div class="row column_title">
                 <div class="col-md-12">
                     <div class="page_title">
-                        <h2>Change Password Page</h2>
+                        <h2>Account Info</h2>
                     </div>
                 </div>
             </div>
@@ -18,9 +18,6 @@
                 <div class="col-4 offset-8">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <i class="fa fa-check"></i>{{ session('changeSuccess') }}
-                        {{-- <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button> --}}
                     </div>
                 </div>
             @endif
@@ -29,9 +26,6 @@
                 <div class="col-4 offset-8">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <i class="fa fa-check"></i>{{ session('notMatch') }}
-                        {{-- <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button> --}}
                     </div>
                 </div>
             @endif
@@ -76,9 +70,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4 offset-2 mt-3">
-                                                <button class="btn bg-dark text-white">
-                                                    <i class="fa fa-pencil-square-o"></i>Edit Profile
-                                                </button>
+                                                <a href="{{ route('admin#edit') }}">
+                                                    <button class="btn bg-dark text-white">
+                                                        <i class="fa fa-pencil-square-o"></i>Edit Profile
+                                                    </button></a>
                                             </div>
                                         </div>
                                     </div>

@@ -41,6 +41,12 @@ class AdminController extends Controller
         return view('admin.account.details');
     }
 
+    //direct edit page
+    public function edit()
+    {
+        return view('admin.account.edit');
+    }
+
     //password validation check
     private function passwordValidationCheck($request)
     {
