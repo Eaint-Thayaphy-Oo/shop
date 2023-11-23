@@ -13,7 +13,7 @@ class AdminController extends Controller
     //direct change password page
     public function changePasswordPage()
     {
-        return view('admin.password.change');
+        return view('admin.account.changePassword');
     }
 
     //direct change password
@@ -33,6 +33,12 @@ class AdminController extends Controller
             return redirect()->route('admin#changePasswordPage')->with(['changeSuccess' => 'Password Change Successfully...']);
         }
         return back()->with(['notMatch' => 'The old password not match.Try again!...']);
+    }
+
+    //direct admin details page
+    public function details()
+    {
+        return view('admin.account.details');
     }
 
     //password validation check

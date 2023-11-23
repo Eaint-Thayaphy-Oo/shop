@@ -34,9 +34,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update', [CategoryController::class, 'update'])->name('category#update');
     });
 
-    //admin account
+    //password
     Route::get('password/changePage', [AdminController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
     Route::post('change/password', [AdminController::class, 'changePassword'])->name('admin#changePassword');
+
+    //account
+    Route::get('details', [AdminController::class, 'details'])->name('admin#details');
 
     //user
     //home
