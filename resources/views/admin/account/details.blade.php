@@ -64,6 +64,8 @@
                                             <h4 class="my-3"><i class="fa fa-phone"></i>{{ Auth::user()->phone }}</h4>
                                             <h4 class="my-3"><i class="fa fa-bookmark"></i>{{ Auth::user()->address }}
                                             </h4>
+                                            <h4 class="my-3"><i class="fa fa-female"></i>{{ Auth::user()->gender }}
+                                            </h4>
                                             <h4 class="my-3"><i
                                                     class="fa fa-clock-o"></i>{{ Auth::user()->created_at->format('j/F/Y') }}
                                             </h4>

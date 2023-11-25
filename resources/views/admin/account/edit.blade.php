@@ -61,8 +61,13 @@
                                                 <div class="mt-3">
                                                     <input type="file" name="image" class="form-control">
                                                 </div>
+                                                <div class="mt-3">
+                                                    <button class="btn bg-dark text-white">
+                                                        <i class="fa fa-cloud-upload"></i>Update
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="row col-6">
+                                            <div class="row col-5">
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Name</label>
                                                     <input id="cc-pament" name="name" type="text"
@@ -94,6 +99,20 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Gender</label>
+                                                    <select name="gender"
+                                                        value="{{ old('gender', Auth::user()->gender) }}"
+                                                        class="form-control @error('gender') is-invalid @enderror"
+                                                        aria-required="true" aria-invalid="false">
+                                                        <option value="Choose gender..."></option>
+                                                        <option value="male"
+                                                            @if (Auth::user()->gender == 'male') selected @endif>Male</option>
+                                                        <option value="female"
+                                                            @if (Auth::user()->gender == 'female') selected @endif>Female
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Address</label>
                                                     <textarea id="cc-pament" name="address" type="text" class="form-control @error('address') is-invalid @enderror"
                                                         aria-required="true" aria-invalid="false" placeholder="">{{ old('address', Auth::user()->address) }}</textarea>
@@ -103,11 +122,6 @@
                                                 </div>
                                             </div>
 
-                                        </div>
-                                        <div class="mt-3">
-                                            <button class="btn bg-dark text-white">
-                                                <i class="fa fa-cloud-upload"></i>Update
-                                            </button>
                                         </div>
                                     </form>
                                 </div>
