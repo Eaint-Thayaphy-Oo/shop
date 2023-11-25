@@ -133,8 +133,14 @@
                                                     href="{{ route('admin#changePasswordPage') }}">Change Password</a>
                                                 <a class="dropdown-item" href="settings.html">Settings</a>
                                                 <a class="dropdown-item" href="help.html">Help</a>
-                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
-                                                        class="fa fa-sign-out"></i></a>
+                                                {{-- <a class="dropdown-item" href="{{ route('logout') }}"><span>Log
+                                                        Out</span> <i class="fa fa-sign-out"></i></a> --}}
+                                                <form action="{{ route('logout') }}" method="post"
+                                                    class="d-flex justify-content-center">
+                                                    @csrf
+                                                    <button class="dropdown-item" type="submit">Logout<i
+                                                            class="fa fa-sign-out"></i></button>
+                                                </form>
                                             </div>
                                         </li>
                                     </ul>

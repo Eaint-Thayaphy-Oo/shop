@@ -32,6 +32,17 @@
                     @enderror
                 </div>
                 <div class="field">
+                    <label class="label_field">Gender</label>
+                    <select name="gender" class="">
+                        <option value="">Choose gender...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    @error('gender')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="field">
                     <label class="label_field">Address</label>
                     <input type="text" name="address" placeholder="Address" />
                     @error('address')
