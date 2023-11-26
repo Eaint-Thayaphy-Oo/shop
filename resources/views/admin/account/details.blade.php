@@ -30,6 +30,14 @@
                 </div>
             @endif
 
+            @if (session('updateSuccess'))
+                <div class="col-4 offset-8">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fa fa-check"></i>{{ session('updateSuccess') }}
+                    </div>
+                </div>
+            @endif
+
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -54,10 +62,19 @@
                                                     alt="#" />
                                             @else
                                                 <img class="img-responsive"
-                                                    src="{{ asset('admin/images/layout_img/user_img.jpg') }}"
+                                                    src="{{ asset('storage/' . Auth::user()->image) }}"
                                                     alt="#" />
                                             @endif
+                                            <div class="row">
+                                                <div class="col-4 offset-2 mt-3">
+                                                    <a href="{{ route('admin#edit') }}">
+                                                        <button class="btn bg-dark text-white">
+                                                            <i class="fa fa-pencil-square-o"></i>Edit Profile
+                                                        </button></a>
+                                                </div>
+                                            </div>
                                         </div>
+
                                         <div class="col-5 offset-1">
                                             <h4 class="my-3"><i class="fa fa-user"></i>{{ Auth::user()->name }}</h4>
                                             <h4 class="my-3"><i class="fa fa-envelope"></i>{{ Auth::user()->email }}</h4>
@@ -69,14 +86,6 @@
                                             <h4 class="my-3"><i
                                                     class="fa fa-clock-o"></i>{{ Auth::user()->created_at->format('j/F/Y') }}
                                             </h4>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4 offset-2 mt-3">
-                                                <a href="{{ route('admin#edit') }}">
-                                                    <button class="btn bg-dark text-white">
-                                                        <i class="fa fa-pencil-square-o"></i>Edit Profile
-                                                    </button></a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

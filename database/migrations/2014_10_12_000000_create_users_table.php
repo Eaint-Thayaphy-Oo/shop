@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone', 15);
             $table->string('address');
             $table->string('role', 15)->default('user');
-            $table->string('gender', 10);
+            $table->string('gender');
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

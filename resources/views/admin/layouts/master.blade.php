@@ -59,7 +59,7 @@
                                         alt="#" />
                                 @else
                                     <img class="img-responsive"
-                                        src="{{ asset('admin/images/layout_img/user_img.jpg') }}" alt="#" />
+                                        src="{{ asset('storage/' . Auth::user()->image) }}" alt="#" />
                                 @endif
                             </div>
                             <div class="user_info">
@@ -102,7 +102,7 @@
                                     class="fa fa-bars"></i></button>
                             <div class="logo_section">
                                 <a href="index.html"><img class="img-responsive"
-                                        src="{{ asset('admin/images/logo/logo.png') }}" alt="#" /></a>
+                                        src="{{ asset('admin/images/logo/logo_icon.png') }}" alt="#" /></a>
                             </div>
                             <div class="right_topbar">
                                 <div class="icon_info">
@@ -121,7 +121,7 @@
                                                         src="{{ asset('image/default_user.webp') }}" alt="#" />
                                                 @else
                                                     <img class="img-responsive"
-                                                        src="{{ asset('admin/images/layout_img/user_img.jpg') }}"
+                                                        src="{{ asset('storage/' . Auth::user()->image) }}"
                                                         alt="#" />
                                                 @endif
                                                 <span class="name_user">{{ Auth::user()->name }}</span>

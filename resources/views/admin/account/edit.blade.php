@@ -47,7 +47,9 @@
                                         <h3 class="text-center title-2">My Profile</h3>
                                     </div>
                                     <hr>
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('admin#update', Auth::user()->id) }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-4 offset-1">
                                                 @if (Auth::user()->image == null)
@@ -55,8 +57,7 @@
                                                         alt="#" />
                                                 @else
                                                     <img class="img-responsive"
-                                                        src="{{ asset('admin/images/layout_img/user_img.jpg') }}"
-                                                        alt="#" />
+                                                        src="{{ asset('storage/' . Auth::user()->image) }}" alt="#" />
                                                 @endif
                                                 <div class="mt-3">
                                                     <input type="file" name="image" class="form-control">

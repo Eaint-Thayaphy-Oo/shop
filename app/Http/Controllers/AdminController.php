@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as IlluminateValidationValidator;
 
 class AdminController extends Controller
 {
@@ -47,6 +51,29 @@ class AdminController extends Controller
         return view('admin.account.edit');
     }
 
+    //direct update page
+    public function update($id, Request $request)
+    {
+        // dd($id);
+        $this->accountValidationCheck($request);
+        $data = $this->getUserData($request);
+
+        if ($request->hasFile('image')) {
+            $dbImage = User::where('id', Auth::user()->id)->first();
+            $dbImage = $dbImage->image;
+
+            if ($dbImage != null) {
+                Storage::delete('public/' . $dbImage);
+            }
+            $fileName = uniqid() . $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public', $fileName);
+            $data['image'] = $fileName;
+        }
+
+        User::where('id', Auth::user()->id)->update($data);
+        return redirect()->route('admin#details')->with(['updateSuccess' => 'Admin Account Updated...']);
+    }
+
     //password validation check
     private function passwordValidationCheck($request)
     {
@@ -55,5 +82,30 @@ class AdminController extends Controller
             'newPassword' => 'required|min:6',
             'confirmPassword' => 'required|min:6|same:newPassword'
         ])->validate();
+    }
+
+    //account validation check
+    private function accountValidationCheck($request)
+    {
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ])->validate();
+    }
+
+    //get user data
+    private function getUserData($request)
+    {
+        return [
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'updated_at' => Carbon::now()
+        ];
     }
 }
