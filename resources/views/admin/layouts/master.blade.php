@@ -58,8 +58,8 @@
                                     <img class="img-responsive" src="{{ asset('image/default_user.webp') }}"
                                         alt="#" />
                                 @else
-                                    <img class="img-responsive"
-                                        src="{{ asset('storage/' . Auth::user()->image) }}" alt="#" />
+                                    <img class="img-responsive" src="{{ asset('storage/' . Auth::user()->image) }}"
+                                        alt="#" />
                                 @endif
                             </div>
                             <div class="user_info">
@@ -87,6 +87,8 @@
                             </ul>
                             <a href="{{ route('category#list') }}"><i class="fa fa-list yellow_color"></i>
                                 <span>Category</span></a>
+                            <a href="{{ route('product#list') }}"><i class="fa fa-leaf yellow_color"></i>
+                                <span>Product</span></a>
                         </li>
                     </ul>
                 </div>
