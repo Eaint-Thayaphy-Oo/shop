@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
         //products
         Route::prefix('products')->group(function () {
             Route::get('list', [ProductController::class, 'list'])->name('product#list');
+            Route::get('createPage', [ProductController::class, 'createPage'])->name('product#createPage');
+            Route::post('create', [ProductController::class, 'create'])->name('product#create');
         });
     });
 
