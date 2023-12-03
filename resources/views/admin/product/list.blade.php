@@ -50,11 +50,11 @@
                             <h4 class="text-secondary">Search Key : <span class="text-danger">{{ request('key') }}</span>
                             </h4>
 
-                            <h4 class="text-secondary"><i class="fa fa-database"></i> - </h4>
+                            <h4 class="text-secondary"><i class="fa fa-database"></i> - {{ $product->total() }}</h4>
                             </h4>
                         </div>
                         <div class="col-3 offset-6">
-                            <form action="" method="get">
+                            <form action="{{ route('product#list') }}" method="get">
                                 @csrf
                                 <div class="d-flex my-3">
                                     <input type="text" name="key" class="form-control" value="{{ request('key') }}"
@@ -110,9 +110,11 @@
                                                     <td class="col-2">{{ $p->created_at->format('F-j-Y') }}</td>
                                                     <td>
                                                         <div class="table-data-feature">
-                                                            <a href=""><i class="fa fa-eye" title="View"></i></a>
-                                                            <a href=""><i class="fa fa-edit" title="Edit"></i></a>
-                                                            <a href=""><i class="fa fa-trash" title="Delete"></i></a>
+                                                            <a href="{{ route('product#edit', $p->id) }}"><i class="fa fa-eye" title="View"></i></a>
+                                                            <a href="{{ route('product#edit', $p->id) }}"><i
+                                                                    class="fa fa-edit" title="Edit"></i></a>
+                                                            <a href="{{ route('product#delete', $p->id) }}"><i
+                                                                    class="fa fa-trash" title="Delete"></i></a>
                                                             <a href=""><i class="fa fa-folder"
                                                                     title="More"></i></a>
                                                         </div>

@@ -12,7 +12,13 @@ class ProductController extends Controller
     //direct product list page
     public function list()
     {
-        $product = Product::orderBy('created_at', 'desc')->paginate(3);
+        $product = Product::when(request('key'), function ($query) {
+            $query->where('name', 'like', '%' . request('key') . '%');
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(3);
+
+        $product->appends(request()->all());
         return view('admin.product.list', compact('product'));
     }
 
@@ -38,6 +44,22 @@ class ProductController extends Controller
 
         Product::create($data);
         return redirect()->route('product#list')->with(['createSuccess' => 'Product Created Successfully...']);
+    }
+
+    //direct edit page
+    public function edit($id)
+    {
+        // dd($id);
+        $product = Product::where('id', $id)->first();
+        return view('admin.product.edit', compact('product'));
+    }
+
+    //direct delete product
+    public function delete($id)
+    {
+        // dd($id);
+        Product::where('id', $id)->delete();
+        return redirect()->route('product#list')->with(['deleteSuccess' => 'Product Deleted Successfully...']);
     }
 
     //product validation check
