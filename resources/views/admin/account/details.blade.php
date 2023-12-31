@@ -58,12 +58,16 @@
                                     <div class="row">
                                         <div class="col-3 offset-2">
                                             @if (Auth::user()->image == null)
-                                                <img class="img-responsive" src="{{ asset('image/default_user.webp') }}"
-                                                    alt="#" />
+                                                @if (Auth::user()->gender == 'male')
+                                                    <img src="{{ asset('image/default_user.webp') }}" alt=""
+                                                        class="img-thumbnail shadow-sm" />
+                                                @else
+                                                    <img src="{{ asset('image/default_female.jpg') }}" alt=""
+                                                        class="img-thumbnail shadow-sm" />
+                                                @endif
                                             @else
-                                                <img class="img-responsive"
-                                                    src="{{ asset('storage/' . Auth::user()->image) }}"
-                                                    alt="#" />
+                                                <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                    class="img-thumbnail shadow-sm">
                                             @endif
                                             <div class="row">
                                                 <div class="col-4 offset-2 mt-3">

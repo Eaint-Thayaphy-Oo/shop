@@ -111,7 +111,7 @@
                                                     <td>
                                                         <div class="table-data-feature">
                                                             <a href="{{ route('product#edit', $p->id) }}"><i class="fa fa-eye" title="View"></i></a>
-                                                            <a href="{{ route('product#edit', $p->id) }}"><i
+                                                            <a href="{{ route('product#update', $p->id) }}"><i
                                                                     class="fa fa-edit" title="Edit"></i></a>
                                                             <a href="{{ route('product#delete', $p->id) }}"><i
                                                                     class="fa fa-trash" title="Delete"></i></a>

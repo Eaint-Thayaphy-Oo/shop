@@ -55,11 +55,16 @@
                         <div class="user_profle_side">
                             <div class="user_img">
                                 @if (Auth::user()->image == null)
-                                    <img class="img-responsive" src="{{ asset('image/default_user.webp') }}"
-                                        alt="#" />
+                                    @if (Auth::user()->gender == 'male')
+                                        <img src="{{ asset('image/default_user.webp') }}" alt=""
+                                            class="img-thumbnail shadow-sm" />
+                                    @else
+                                        <img src="{{ asset('image/default_female.jpg') }}" alt=""
+                                            class="img-thumbnail shadow-sm" />
+                                    @endif
                                 @else
-                                    <img class="img-responsive" src="{{ asset('storage/' . Auth::user()->image) }}"
-                                        alt="#" />
+                                    <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                        class="img-thumbnail shadow-sm">
                                 @endif
                             </div>
                             <div class="user_info">
@@ -119,12 +124,16 @@
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown">
                                                 @if (Auth::user()->image == null)
-                                                    <img class="img-responsive"
-                                                        src="{{ asset('image/default_user.webp') }}" alt="#" />
+                                                    @if (Auth::user()->gender == 'male')
+                                                        <img src="{{ asset('image/default_user.webp') }}"
+                                                            alt="" class="img-thumbnail shadow-sm" />
+                                                    @else
+                                                        <img src="{{ asset('image/default_female.jpg') }}"
+                                                            alt="" class="img-thumbnail shadow-sm" />
+                                                    @endif
                                                 @else
-                                                    <img class="img-responsive"
-                                                        src="{{ asset('storage/' . Auth::user()->image) }}"
-                                                        alt="#" />
+                                                    <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                        class="img-thumbnail shadow-sm">
                                                 @endif
                                                 <span class="name_user">{{ Auth::user()->name }}</span>
                                             </a>

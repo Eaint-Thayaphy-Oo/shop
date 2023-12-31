@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -33,7 +34,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         // dd($request->toArray());
-        $this->productValidationCheck($request);
+        $this->productValidationCheck($request, "create");
         $data = $this->getProductData($request);
 
         if ($request->hasFile('productImage')) {
@@ -62,17 +63,53 @@ class ProductController extends Controller
         return redirect()->route('product#list')->with(['deleteSuccess' => 'Product Deleted Successfully...']);
     }
 
-    //product validation check
-    private function productValidationCheck($request)
+    //direct update page
+    public function update($id)
     {
-        Validator::make($request->all(), [
-            'productName' => 'required|min:5|unique:products,name',
+        $product = Product::where('id', $id)->first();
+        $category = Category::get();
+        return view('admin.product.update', compact('product', 'category'));
+    }
+
+    //update page
+    public function updatePage(Request $request)
+    {
+        $this->productValidationCheck($request, "update");
+        $data = $this->getProductData($request);
+
+        if ($request->hasFile('productImage')) {
+            $oldImageName = Product::where('id', $request->productId)->first();
+            $oldImageName = $oldImageName->image;
+            // dd($oldImageName);
+
+            if ($oldImageName != null) {
+                Storage::delete('public/' . $oldImageName);
+            }
+
+            $fileName = uniqid() . $request->file('productImage')->getClientOriginalName();
+            $request->file('productImage')->storeAs('public', $fileName);
+            $data['image'] = $fileName;
+        }
+
+        Product::where('id', $request->productId)->update($data);
+        return redirect()->route('product#list')->with(['updateSuccess' => 'Product Updated Successfully...']);
+    }
+
+    //product validation check
+    private function productValidationCheck($request, $action)
+    {
+        $validationRules = [
+            'productName' => 'required|min:5|unique:products,name,' . $request->productId,
             'productCategory' => 'required',
             'productDescription' => 'required|min:10',
             'productImage' => 'required|mimes:jpg,jpeg,png,webp|file',
             'productPrice' => 'required',
             'productWaitingTime' => 'required'
-        ])->validate();
+        ];
+
+        $validationRules['productImage'] = $action == "create" ? "required|mimes:jpg,jpeg,png,webp|file" : "mimes:jpg,jpeg,png,webp|file";
+
+        Validator::make($request->all(), $validationRules)->validate();
     }
 
     //get product data
