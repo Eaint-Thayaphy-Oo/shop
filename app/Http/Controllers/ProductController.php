@@ -13,10 +13,12 @@ class ProductController extends Controller
     //direct product list page
     public function list()
     {
-        $product = Product::when(request('key'), function ($query) {
-            $query->where('name', 'like', '%' . request('key') . '%');
-        })
-            ->orderBy('created_at', 'desc')
+        $product = Product::select('products.*', 'categories.name as category_name')
+            ->when(request('key'), function ($query) {
+                $query->where('name', 'like', '%' . request('key') . '%');
+            })
+            ->leftJoin('categories', 'products.category_id', 'categories.id')
+            ->orderBy('products.created_at', 'desc')
             ->paginate(3);
 
         $product->appends(request()->all());
@@ -51,7 +53,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         // dd($id);
-        $product = Product::where('id', $id)->first();
+        $product = Product::select('products.*', 'categories.name as category_name')
+            ->leftJoin('categories', 'products.category_id', 'categories.id')
+            ->where('id', $id)->first();
         return view('admin.product.edit', compact('product'));
     }
 
@@ -102,12 +106,12 @@ class ProductController extends Controller
             'productName' => 'required|min:5|unique:products,name,' . $request->productId,
             'productCategory' => 'required',
             'productDescription' => 'required|min:10',
-            'productImage' => 'required|mimes:jpg,jpeg,png,webp|file',
+            'productImage' => 'required|mimes:jpg,jpeg,png,webp,avif|file',
             'productPrice' => 'required',
             'productWaitingTime' => 'required'
         ];
 
-        $validationRules['productImage'] = $action == "create" ? "required|mimes:jpg,jpeg,png,webp|file" : "mimes:jpg,jpeg,png,webp|file";
+        $validationRules['productImage'] = $action == "create" ? "required|mimes:jpg,jpeg,png,webp,avif|file" : "mimes:jpg,jpeg,png,webp,avif|file";
 
         Validator::make($request->all(), $validationRules)->validate();
     }

@@ -105,12 +105,13 @@
                                                             class="img-thumbnail shadow-sm"></td>
                                                     <td class="col-2">{{ $p->name }}</td>
                                                     <td class="col-2">{{ $p->price }}</td>
-                                                    <td class="col-2">{{ $p->category_id }}</td>
+                                                    <td class="col-2">{{ $p->category_name }}</td>
                                                     <td class="col-2"><i class="fa fa-eye"></i>{{ $p->view_count }}</td>
                                                     <td class="col-2">{{ $p->created_at->format('F-j-Y') }}</td>
                                                     <td>
                                                         <div class="table-data-feature">
-                                                            <a href="{{ route('product#edit', $p->id) }}"><i class="fa fa-eye" title="View"></i></a>
+                                                            <a href="{{ route('product#edit', $p->id) }}"><i
+                                                                    class="fa fa-eye" title="View"></i></a>
                                                             <a href="{{ route('product#update', $p->id) }}"><i
                                                                     class="fa fa-edit" title="Edit"></i></a>
                                                             <a href="{{ route('product#delete', $p->id) }}"><i

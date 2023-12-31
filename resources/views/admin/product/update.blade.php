@@ -34,79 +34,80 @@
                                     <form action="{{ route('product#updatePage') }}" method="post" novalidate="novalidate"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Name</label>
-                                            <input id="cc-pament" name="productName" type="text"
-                                                class="form-control @error('productName') is-invalid @enderror"
-                                                aria-required="true" aria-invalid="false"
-                                                value="{{ old('productName', $product->name) }}"
-                                                placeholder="Enter Your Product Name...">
-                                            @error('productName')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Category</label>
-                                            <select name="productCategory" class="form-control">
-                                                @foreach ($category as $c)
-                                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('productCategory')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Description</label>
-                                            <textarea id="cc-pament" name="productDescription" type="text"
-                                                class="form-control @error('productDescription') is-invalid @enderror" aria-required="true" aria-invalid="false"
-                                                value="" placeholder="Enter Description...">{{ old('productDescription', $product->description) }}</textarea>
-                                            @error('productDescription')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" name="productId" value="{{ $product->id }}">
-                                            <label for="cc-payment" class="control-label mb-1">Image</label>
-                                            <input id="cc-pament" name="productImage" type="file"
-                                                class="form-control @error('productImage') is-invalid @enderror"
-                                                aria-required="true" aria-invalid="false"
-                                                value="{{ old('productImage', $product->image) }}"
-                                                placeholder="Enter Product Image...">
-                                            @error('productImage')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Price</label>
-                                            <input id="cc-pament" name="productPrice" type="text"
-                                                class="form-control @error('productPrice') is-invalid @enderror"
-                                                aria-required="true" aria-invalid="false"
-                                                value="{{ old('productPrice', $product->price) }}"
-                                                placeholder="Enter Product Price...">
-                                            @error('productPrice')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Waiting Time</label>
-                                            <input id="cc-pament" name="productWaitingTime" type="text"
-                                                class="form-control @error('productWaitingTime') is-invalid @enderror"
-                                                aria-required="true" aria-invalid="false"
-                                                value="{{ old('productWaitingTime', $product->waiting_time) }}"
-                                                placeholder="Enter Waiting Time...">
-                                            @error('productWaitingTime')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div>
-                                            <button id="payment-button" type="submit"
-                                                class="btn btn-lg btn-info btn-block">
-                                                <span id="payment-button-amount">Update</span>
-                                                <span id="payment-button-sending" style="display:none;">Sending…</span>
-                                                <i class="fa-solid fa-circle-right"></i>
-                                            </button>
+                                        <div class="row">
+                                            <div class="col-4 offset-1">
+                                                <input type="hidden" name="productId" value="{{ $product->id }}">
+                                                <img src="{{ asset('storage/' . $product->image) }}" alt=""
+                                                    class="img-thumbnail shadow-sm" />
+                                                <div class="mt-3">
+                                                    <input type="file" name="productImage" value="{{ old('productImage', $product->image) }}"
+                                                        class="form-control @error('productImage') is-invalid
+                                                    @enderror">
+                                                    @error('productImage')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="mt-3">
+                                                    <button class="btn bg-dark text-white col-12" type="submit">
+                                                        <i class="fa-solid fa-circle-chevron-right me-1"></i>Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row col-6">
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Name</label>
+                                                    <input id="cc-pament" name="productName" type="text"
+                                                        class="form-control @error('productName') is-invalid @enderror"
+                                                        aria-required="true" aria-invalid="false"
+                                                        value="{{ old('productName', $product->name) }}"
+                                                        placeholder="Enter Your Product Name...">
+                                                    @error('productName')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div><br/>
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Category</label>
+                                                    <select name="productCategory" class="form-control">
+                                                        @foreach ($category as $c)
+                                                            <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('productCategory')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Description</label>
+                                                    <textarea id="cc-pament" name="productDescription" type="text"
+                                                        class="form-control @error('productDescription') is-invalid @enderror" aria-required="true" aria-invalid="false"
+                                                        value="" placeholder="Enter Description...">{{ old('productDescription', $product->description) }}</textarea>
+                                                    @error('productDescription')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Price</label>
+                                                    <input id="cc-pament" name="productPrice" type="text"
+                                                        class="form-control @error('productPrice') is-invalid @enderror"
+                                                        aria-required="true" aria-invalid="false"
+                                                        value="{{ old('productPrice', $product->price) }}"
+                                                        placeholder="Enter Product Price...">
+                                                    @error('productPrice')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Waiting Time</label>
+                                                    <input id="cc-pament" name="productWaitingTime" type="text"
+                                                        class="form-control @error('productWaitingTime') is-invalid @enderror"
+                                                        aria-required="true" aria-invalid="false"
+                                                        value="{{ old('productWaitingTime', $product->waiting_time) }}"
+                                                        placeholder="Enter Waiting Time...">
+                                                    @error('productWaitingTime')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
